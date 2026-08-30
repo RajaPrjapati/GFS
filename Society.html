@@ -155,17 +155,18 @@
       let username = document.getElementById("username").value.trim().toLowerCase();
       let password = document.getElementById("password").value.trim();
 
-      // Allowed users and passwords
+      // Allowed users and passwords (lowercase keys for matching)
       const users = {
-        "Laxman": "4758",
-         "admin": "admin",
-        "Sitaram": "5592",
+        "laxman": "4758",
+        "admin": "admin",
+        "sitaram": "5592",
       };
 
       if (users[username] && users[username] === password) {
-        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1) + Ji);
+        // Welcome message with " Ji" at the end
+        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1) + " Ji");
         // Redirect after login
-        window.location.href = "index.html"; // change this to your home page
+        window.location.href = "index.html";
       } else {
         alert("Invalid Username or Password!");
       }
@@ -173,5 +174,4 @@
   </script>
 
 </body>
-        </html>
-
+</html>
