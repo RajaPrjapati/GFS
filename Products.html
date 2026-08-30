@@ -1,7 +1,9 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,57 +22,78 @@
             background: #f1f3f6;
         }
 
+
         /* ================= HEADER ================= */
 
         .header {
+
             background: #D6336C;
             color: white;
+
             padding: 15px 8%;
 
             display: flex;
             align-items: center;
+
             gap: 30px;
         }
 
+
         .logo {
+
             font-size: 25px;
             font-weight: bold;
+
             white-space: nowrap;
         }
 
+
         .search {
+
             flex: 1;
             max-width: 650px;
         }
 
+
         .search input {
+
             width: 100%;
+
             padding: 12px 15px;
 
             border: none;
             outline: none;
+
             border-radius: 3px;
 
             font-size: 15px;
         }
 
 
+
         /* ================= MAIN ================= */
 
         .container {
+
             width: 85%;
+
             margin: 25px auto;
         }
 
+
         .title {
+
             background: white;
 
             padding: 20px;
+
             margin-bottom: 15px;
 
             font-size: 22px;
+
             font-weight: bold;
         }
+
 
 
         /* ================= PRODUCT GRID ================= */
@@ -79,10 +102,12 @@
 
             display: grid;
 
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns:
+                repeat(4, 1fr);
 
             gap: 18px;
         }
+
 
 
         /* ================= PRODUCT CARD ================= */
@@ -103,8 +128,11 @@
 
             transform: translateY(-5px);
 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.15);
         }
+
 
 
         /* ================= PRODUCT IMAGE ================= */
@@ -121,6 +149,7 @@
         }
 
 
+
         /* ================= PRODUCT NAME ================= */
 
         .product-name {
@@ -131,6 +160,7 @@
 
             margin-bottom: 8px;
         }
+
 
 
         /* ================= DESCRIPTION ================= */
@@ -147,25 +177,6 @@
         }
 
 
-        /* ================= RATING ================= */
-
-        .rating {
-
-            display: inline-block;
-
-            background: #388e3c;
-
-            color: white;
-
-            padding: 4px 8px;
-
-            border-radius: 3px;
-
-            font-size: 13px;
-
-            margin-bottom: 10px;
-        }
-
 
         /* ================= PRICE ================= */
 
@@ -178,6 +189,7 @@
             margin-bottom: 8px;
         }
 
+
         .old-price {
 
             color: #777;
@@ -189,6 +201,7 @@
             margin-left: 8px;
         }
 
+
         .discount {
 
             color: #388e3c;
@@ -198,35 +211,6 @@
             margin-left: 8px;
         }
 
-
-        /* ================= BUTTON ================= */
-
-        .add-btn {
-
-            width: 100%;
-
-            padding: 10px;
-
-            background: #ff9f00;
-
-            color: white;
-
-            border: none;
-
-            border-radius: 3px;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
-            margin-top: 8px;
-        }
-
-
-        .add-btn:hover {
-
-            background: #fb8c00;
-        }
 
 
         /* ================= NO RESULT ================= */
@@ -244,7 +228,10 @@
             font-size: 18px;
 
             color: #555;
+
+            grid-column: 1 / -1;
         }
+
 
 
         /* ================= RESPONSIVE ================= */
@@ -253,7 +240,8 @@
 
             .product-grid {
 
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns:
+                    repeat(3, 1fr);
             }
         }
 
@@ -262,13 +250,16 @@
 
             .product-grid {
 
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
+
 
             .container {
 
                 width: 95%;
             }
+
 
             .header {
 
@@ -276,6 +267,7 @@
 
                 align-items: stretch;
             }
+
 
             .search {
 
@@ -297,6 +289,7 @@
 </head>
 
 
+
 <body>
 
 
@@ -314,7 +307,7 @@
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Search product by name..."
+                placeholder="Search product by name or code..."
                 autocomplete="off"
             >
 
@@ -336,100 +329,310 @@
         </div>
 
 
+
         <!-- ================= PRODUCT LIST ================= -->
 
         <div class="product-grid" id="productGrid">
+
+
             <!-- PRODUCT 1 -->
+
             <div class="product-card">
-            <img class="product-image" src="m1.png" alt="I Leg (Gold/Rose Gold/ Gun Black">
-                <div class="product-name"> I Leg (Gold/Rose Gold/ Gun Black </div>
-                <div class="description"> Code - 1</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+                <img
+                    class="product-image"
+                    src="m1.png"
+                    alt="I Leg Gold Rose Gold Gun Black"
+                >
+
+                <div class="product-name">
+                    I Leg (Gold/Rose Gold/Gun Black)
                 </div>
+
+                <div class="description">
+                    Code - 1
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
-            
+
+
+
             <!-- PRODUCT 2 -->
-           <div class="product-card">
-            <img class="product-image" src="m2.png" alt="L Leg (Gold/Rose Gold/Gun Black)">
-                <div class="product-name"> L Leg (Gold/Rose Gold/Gun Black) </div>
-                <div class="description"> Code - 2</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="m2.png"
+                    alt="L Leg Gold Rose Gold Gun Black"
+                >
+
+                <div class="product-name">
+                    L Leg (Gold/Rose Gold/Gun Black)
                 </div>
+
+                <div class="description">
+                    Code - 2
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
+
+
 
             <!-- PRODUCT 3 -->
 
             <div class="product-card">
-            <img class="product-image" src="m3.png" alt="Sofa Headrest">
-                <div class="product-name"> Sofa Headrest </div>
-                <div class="description"> Code - 3</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+                <img
+                    class="product-image"
+                    src="m3.png"
+                    alt="Sofa Headrest"
+                >
+
+                <div class="product-name">
+                    Sofa Headrest
                 </div>
+
+                <div class="description">
+                    Code - 3
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
+
+
+
             <!-- PRODUCT 4 -->
 
             <div class="product-card">
-            <img class="product-image" src="m4.png" alt="Sofa Armrest">
-                <div class="product-name"> Sofa Armrest </div>
-                <div class="description"> Code - 4</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+                <img
+                    class="product-image"
+                    src="m4.png"
+                    alt="Sofa Armrest"
+                >
+
+                <div class="product-name">
+                    Sofa Armrest
                 </div>
+
+                <div class="description">
+                    Code - 4
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
+
+
 
             <!-- PRODUCT 5 -->
 
-           <div class="product-card">
-            <img class="product-image" src="m5.png" alt="Jute Niwar">
-                <div class="product-name"> Jute Niwar </div>
-                <div class="description"> Code - 5</div>  
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="m5.png"
+                    alt="Jute Niwar"
+                >
+
+                <div class="product-name">
+                    Jute Niwar
                 </div>
+
+                <div class="description">
+                    Code - 5
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
+
+
+
             <!-- PRODUCT 6 -->
 
             <div class="product-card">
-            <img class="product-image" src="m6.png" alt="Crystal Button 20mm White">
-                <div class="product-name"> Crystal Button 20mm White </div>
-                <div class="description"> Code - 6</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+                <img
+                    class="product-image"
+                    src="m6.png"
+                    alt="Crystal Button 20mm White"
+                >
+
+                <div class="product-name">
+                    Crystal Button 20mm White
                 </div>
+
+                <div class="description">
+                    Code - 6
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
+
+
 
             <!-- PRODUCT 7 -->
 
             <div class="product-card">
-            <img class="product-image" src="m1.png" alt="I Leg (Gold/Rose Gold/ Gun Black">
-                <div class="product-name"> I Leg (Gold/Rose Gold/ Gun Black </div>
-                <div class="description"> Code - 7</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+                <img
+                    class="product-image"
+                    src="m1.png"
+                    alt="I Leg Gold Rose Gold Gun Black"
+                >
+
+                <div class="product-name">
+                    I Leg (Gold/Rose Gold/Gun Black)
                 </div>
+
+                <div class="description">
+                    Code - 7
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
-            
+
+
+
             <!-- PRODUCT 8 -->
+
             <div class="product-card">
-            <img class="product-image" src="m1.png" alt="I Leg (Gold/Rose Gold/ Gun Black">
-                <div class="product-name"> I Leg (Gold/Rose Gold/ Gun Black </div>
-                <div class="description"> Code - 8</div>
-                <div class="price"> ₹1400  <span class="old-price"> ₹1500</span>
-                    <span class="discount">  16% off</span>
+
+                <img
+                    class="product-image"
+                    src="m1.png"
+                    alt="I Leg Gold Rose Gold Gun Black"
+                >
+
+                <div class="product-name">
+                    I Leg (Gold/Rose Gold/Gun Black)
                 </div>
+
+                <div class="description">
+                    Code - 8
+                </div>
+
+                <div class="price">
+
+                    ₹1400
+
+                    <span class="old-price">
+                        ₹1500
+                    </span>
+
+                    <span class="discount">
+                        16% off
+                    </span>
+
+                </div>
+
             </div>
 
-        <!-- NO RESULT MESSAGE -->
 
-        <div id="noResult">
 
-            No product found.
+            <!-- ================= NO RESULT ================= -->
+
+            <div id="noResult">
+
+                No product found.
+
+            </div>
+
 
         </div>
-
 
     </main>
 
@@ -439,77 +642,133 @@
 
     <script>
 
+
         const searchInput =
             document.getElementById("searchInput");
 
+
         const products =
             document.querySelectorAll(".product-card");
+
 
         const noResult =
             document.getElementById("noResult");
 
 
-        searchInput.addEventListener("input", function () {
 
-            const searchText =
-                searchInput.value
-                .toLowerCase()
-                .trim();
+        /* ================= SEARCH ================= */
 
-
-            let foundProducts = 0;
+        searchInput.addEventListener(
+            "input",
+            function () {
 
 
-            products.forEach(function (product) {
-
-                const productName =
-                    product
-                    .querySelector(".product-name")
-                    .textContent
+                const searchText =
+                    searchInput.value
                     .toLowerCase()
                     .trim();
 
 
+                let foundProducts = 0;
+
+
+
+                products.forEach(
+                    function (product) {
+
+
+                        /*
+                         * Product Name
+                         */
+
+                        const productName =
+                            product
+                            .querySelector(".product-name")
+                            .textContent
+                            .toLowerCase()
+                            .trim();
+
+
+
+                        /*
+                         * Product Code
+                         */
+
+                        const productCode =
+                            product
+                            .querySelector(".description")
+                            .textContent
+                            .toLowerCase()
+                            .trim();
+
+
+
+                        /*
+                         * Name + Code
+                         *
+                         * Dono ko combine karke
+                         * search kiya ja raha hai.
+                         */
+
+                        const searchableText =
+                            productName +
+                            " " +
+                            productCode;
+
+
+
+                        /*
+                         * Search Match
+                         */
+
+                        if (
+                            searchableText.includes(
+                                searchText
+                            )
+                        ) {
+
+
+                            product.style.display =
+                                "block";
+
+
+                            foundProducts++;
+
+
+                        } else {
+
+
+                            product.style.display =
+                                "none";
+
+                        }
+
+                    }
+                );
+
+
+
                 /*
-                    Product name me search text
-                    available hai to product show hoga.
-                */
+                 * No Result
+                 */
 
-                if (productName.includes(searchText)) {
+                if (foundProducts === 0) {
 
-                    product.style.display = "block";
 
-                    foundProducts++;
+                    noResult.style.display =
+                        "block";
+
+
+                } else {
+
+
+                    noResult.style.display =
+                        "none";
 
                 }
 
-                else {
-
-                    product.style.display = "none";
-
-                }
-
-            });
-
-
-            /*
-                Agar koi product nahi mila
-                to "No product found" show hoga.
-            */
-
-            if (foundProducts === 0) {
-
-                noResult.style.display = "block";
-
             }
-
-            else {
-
-                noResult.style.display = "none";
-
-            }
-
-        });
+        );
 
     </script>
 
@@ -517,3 +776,4 @@
 </body>
 
 </html>
+```
