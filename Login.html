@@ -1,10 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login God Face Sofa</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     /* Reset */
     * {
@@ -29,7 +33,7 @@
       max-width: 380px;
       padding: 25px;
       border-radius: 15px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
@@ -41,9 +45,11 @@
       gap: 10px;
       margin-bottom: 20px;
     }
+
     .logo img {
       width: 40px;
     }
+
     .logo h2 {
       color: #d6336c;
       font-size: 22px;
@@ -54,6 +60,7 @@
       position: relative;
       margin: 15px 0;
     }
+
     .input-group input {
       width: 100%;
       padding: 12px 40px 12px 15px;
@@ -62,6 +69,11 @@
       font-size: 14px;
       outline: none;
     }
+
+    .input-group input:focus {
+      border-color: #d6336c;
+    }
+
     .input-group i {
       position: absolute;
       right: 12px;
@@ -84,6 +96,7 @@
       margin-top: 10px;
       transition: 0.3s;
     }
+
     .btn:hover {
       background: #b82b5c;
     }
@@ -100,81 +113,167 @@
       .login-container {
         padding: 20px;
       }
+
       .logo h2 {
         font-size: 20px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div class="login-container">
+
     <!-- Logo + Title -->
     <div class="logo">
-      <img src="FSC.jpg">
+      <img src="FSC.jpg" alt="Logo">
       <h2>God face Sofa</h2>
     </div>
 
     <!-- Form -->
     <form onsubmit="return validateLogin(event)">
+
       <div class="input-group">
-        <input type="text" id="username" placeholder="Enter Username" required>
+        <input
+          type="text"
+          id="username"
+          placeholder="Enter Username"
+          required
+        >
         <i class="fa fa-user"></i>
       </div>
+
       <div class="input-group">
-        <input type="password" id="password" placeholder="Enter Password" required>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter Password"
+          required
+        >
         <i class="fa fa-eye" id="togglePassword"></i>
       </div>
-      <button class="btn" type="submit">Login</button>
+
+      <button class="btn" type="submit">
+        Login
+      </button>
+
     </form>
-    
-    <!-- Footer -->
+
     <div class="footer">
-      <!--<p>ID your first name lowercase & Password same@123</p> -->
+      <!-- Login credentials -->
     </div>
+
   </div>
 
+
   <script>
-    // Show/Hide Password
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordInput = document.getElementById("password");
+
+    // ==============================
+    // Show / Hide Password
+    // ==============================
+
+    const togglePassword =
+      document.getElementById("togglePassword");
+
+    const passwordInput =
+      document.getElementById("password");
 
     togglePassword.addEventListener("click", function () {
-      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+
+      const type =
+        passwordInput.getAttribute("type") === "password"
+          ? "text"
+          : "password";
+
       passwordInput.setAttribute("type", type);
 
-      // Toggle eye / eye-slash icon
       this.classList.toggle("fa-eye");
       this.classList.toggle("fa-eye-slash");
+
     });
 
+
+    // ==============================
     // Validate Login
+    // ==============================
+
     function validateLogin(event) {
+
       event.preventDefault();
 
-      let username = document.getElementById("username").value.trim().toLowerCase();
-      let password = document.getElementById("password").value.trim();
+      // Username ko lowercase kar rahe hain
+      const username =
+        document
+          .getElementById("username")
+          .value
+          .trim()
+          .toLowerCase();
 
-      // Small letters match hone ke liye keys lowercase rakhi hain
+      // Password case-sensitive rahega
+      const password =
+        document
+          .getElementById("password")
+          .value
+          .trim();
+
+
+      // ==============================
+      // Users
+      // ==============================
+
       const users = {
-        "Laxman": "4758",
+
+        "laxman": "4758",
+
         "admin": "admin",
-        "Sitaram": "5592",
+
+        "sitaram": "5592"
+
       };
 
-      if (users[username] && users[username] === password) {
-        // Unicode escape codes for emojis (Har Browser & OS par safely load honge)
-        const checkEmoji = "\u2705"; // ✅
-        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1) + " Ji " + checkEmoji);
-        
-        // Redirect after login
+
+      // ==============================
+      // Login Check
+      // ==============================
+
+      if (
+        users[username] &&
+        users[username] === password
+      ) {
+
+        const checkEmoji = "\u2705";
+
+        const displayName =
+          username.charAt(0).toUpperCase() +
+          username.slice(1);
+
+        alert(
+          "Login Successful! Welcome " +
+          displayName +
+          " Ji " +
+          checkEmoji
+        );
+
+
+        // Redirect
         window.location.href = "index.html";
+
       } else {
-        const crossEmoji = "\u274C"; // ❌
-        alert("Invalid Username or Password! " + crossEmoji);
+
+        const crossEmoji = "\u274C";
+
+        alert(
+          "Invalid Username or Password! " +
+          crossEmoji
+        );
+
       }
+
     }
+
   </script>
 
 </body>
 </html>
+```
