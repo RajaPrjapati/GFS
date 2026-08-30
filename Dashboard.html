@@ -1,272 +1,337 @@
+# Flipkart-Style Product Page
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-  --dark-pink: #d6336c;
-  --light: #fff;
-  --dark: #222;
-  --gray: #f8f9fa;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
 
-/* Reset */
-* {margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif;}
-body { background: var(--gray); padding:15px; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-/* Dashboard Container */
-.dashboard {
-  display: grid;
-  gap: 15px;
-  grid-template-columns: 1fr; /* Mobile default */
-}
+        body {
+            background: #f1f3f6;
+        }
 
-/* Card */
-.card {
-  background: var(--light);
-  padding: 18px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  display:flex;
-  align-items:center;
-  gap: 15px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.card i {
-  font-size: 32px;
-  color: var(--dark-pink);
-  min-width: 40px;
-  text-align:center;
-}
-.card .info {
-  display:flex;
-  flex-direction:column;
-  width:100%;
-}
-.card h3 {
-  font-size: 16px;
-  color: var(--dark);
-  margin-bottom: 5px;
-}
-.card p {
-  font-size: 20px;
-  font-weight:bold;
-  color: var(--dark-pink);
-}
-.card small {
-  color: #666;
-  font-size: 12px;
-}
+        /* Header */
+        .header {
+            background: #2874f0;
+            color: white;
+            padding: 15px 8%;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
-/* Links for numbers */
-.amount-link {
-  color: var(--dark-pink);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.amount-link:hover {
-  color: #b02155;
-  text-decoration: underline;
-}
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-/* Interest card special layout */
-.interest-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-.interest-info .left {
-  display: flex;
-  flex-direction: column;
-}
-.interest-info .button {
-  display: inline-block;
-  background: var(--dark-pink);
-  color: #fff;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: bold;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.interest-info .button:hover {
-  background: #b02155;
-  transform: translateY(-2px);
-}
+        .search {
+            flex: 1;
+            max-width: 600px;
+        }
 
-/* Highlight Card (Top Info) */
-.top-card {
-  background: linear-gradient(135deg, var(--dark-pink), #ff6b9d);
-  color: var(--light);
-  text-align:center;
-  padding: 20px;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight:bold;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  grid-column: 1 / -1; /* always full width */
-}
+        .search input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 3px;
+            font-size: 15px;
+        }
 
-/* Button text control */
-.text-mobile { display: none; }
-.text-desktop { display: inline; }
+        /* Main */
+        .container {
+            width: 85%;
+            margin: 25px auto;
+        }
 
-@media (max-width: 768px) {
-  .text-desktop { display: none; }
-  .text-mobile { display: inline; }
-}
+        .title {
+            background: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            font-size: 22px;
+            font-weight: bold;
+        }
 
-/* Responsive Grid */
-@media (min-width: 769px) {
-  .dashboard {
-    grid-template-columns: 1fr 1fr; /* 2 cards per row */
-  }
-}
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
 
-  /* Dropdown container */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  margin-left: auto;
-}
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
 
-  /* Make the arrow smaller */
-.dropbtn i {
-  font-size: 12px;   /* or 10px if you want even smaller */
-}
-  
-/* Dropdown button (arrow icon) */
-.dropbtn {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 5px;
-}
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
 
-/* Dropdown content */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 61px;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  border-radius: 8px;
-  z-index: 1;
-}
+        .product-image {
+            width: 100%;
+            height: 230px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
 
-.dropdown-content a {
-  color: black;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: block;
-  font-size: 14px;
-}
+        .product-name {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
 
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
+        .description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
 
-/* Show dropdown on button click */
-.dropdown.show .dropdown-content {
-  display: block;
-}
-</style>
+        .rating {
+            display: inline-block;
+            background: #388e3c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .old-price {
+            color: #777;
+            text-decoration: line-through;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .discount {
+            color: #388e3c;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 10px;
+            background: #ff9f00;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .add-btn:hover {
+            background: #fb8c00;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="dashboard">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">MyShop</div>
 
-  <!-- Top Summary -->
-  <div class="top-card">
-    Committee <br>
-    <small>10 May 2026 - 10 May 2027</small><br>
-    Total summary till <b>10 May 2026</b>
-  </div>
+        <div class="search">
+            <input type="text" placeholder="Search for products...">
+        </div>
+    </header>
 
-  <!-- Members -->
-  <div class="card">
-    <i class="fa-solid fa-users"></i>
-    <div class="info">
-      <h3>Committee Members</h3>
-      <p><a href="MemberDetails.html" class="amount-link">25</a> </p>
-    </div>
-  </div>
 
-  <!-- Deposits -->
-  <div class="card">
-    <i class="fa-solid fa-sack-dollar"></i>
-    <div class="info">
-      <h3>Members Deposited</h3>
-      <p><a href="Month2025.html" class="amount-link"></a></p>
-    </div>
-  </div>
+    <!-- Main Container -->
+    <main class="container">
 
-  <!-- Interest -->
-  <div class="card">
-    <i class="fa-solid fa-percent"></i>
-    <div class="interest-info">
-      <div class="left">
-        <h3>Interest Amount</h3>
-        <p><a href="Interest.html" class="amount-link"></a></p>
-      </div>
-      <a href="Interest Hisab.html" class="button">
-        <span class="text-desktop">Interest Calculation</span>
-        <span class="text-mobile">Interest</span>
-      </a>
-    </div>
-  </div>
+        <div class="title">
+            Electronics Products
+        </div>
 
-  <!-- Balance -->
-  <div class="card">
-    <i class="fa-solid fa-wallet"></i>
-    <div class="info">
-      <h3>Total Balance</h3>
-      <p><a href="#" class="amount-link"></a></p>
-    </div>
-<!-- Dropdown Trigger (Arrow) -->
-  <div class="dropdown">
-    <button class="dropbtn"><i class="fas fa-chevron-down"></i></button>
-    <div class="dropdown-content">
-      <a href="Calculator.html">Calculator</a>
-      <a href="Interest Calculator.html">Interest Calculation</a>
-      <a href="Next Paid Money.html">Next Paid Money</a>
-    </div>
-  </div>
-    
-  </div>
+        <div class="product-grid">
 
-</div>
+            <!-- Product 1 -->
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500"
+                    alt="Laptop">
+
+                <div class="product-name">
+                    HP Laptop 15
+                </div>
+
+                <div class="description">
+                    Intel Core i5, 8GB RAM, 512GB SSD, 15.6 inch Full HD Display
+                </div>
+
+                <span class="rating">
+                    ★ 4.5
+                </span>
+
+                <div class="price">
+                    ₹49,999
+                    <span class="old-price">₹59,999</span>
+                    <span class="discount">16% off</span>
+                </div>
+
+                <button class="add-btn">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 2 -->
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500"
+                    alt="Laptop">
+
+                <div class="product-name">
+                    Dell Inspiron Laptop
+                </div>
+
+                <div class="description">
+                    Intel Core i5, 16GB RAM, 512GB SSD, Windows 11
+                </div>
+
+                <span class="rating">
+                    ★ 4.3
+                </span>
+
+                <div class="price">
+                    ₹54,999
+                    <span class="old-price">₹65,999</span>
+                    <span class="discount">17% off</span>
+                </div>
+
+                <button class="add-btn">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 3 -->
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"
+                    alt="Smartphone">
+
+                <div class="product-name">
+                    Samsung Galaxy Smartphone
+                </div>
+
+                <div class="description">
+                    8GB RAM, 128GB Storage, AMOLED Display, 5000mAh Battery
+                </div>
+
+                <span class="rating">
+                    ★ 4.6
+                </span>
+
+                <div class="price">
+                    ₹24,999
+                    <span class="old-price">₹29,999</span>
+                    <span class="discount">16% off</span>
+                </div>
+
+                <button class="add-btn">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Product 4 -->
+            <div class="product-card">
+
+                <img
+                    class="product-image"
+                    src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500"
+                    alt="Headphones">
+
+                <div class="product-name">
+                    Wireless Headphones
+                </div>
+
+                <div class="description">
+                    Bluetooth 5.3, Noise Cancellation, 40 Hours Battery Life
+                </div>
+
+                <span class="rating">
+                    ★ 4.4
+                </span>
+
+                <div class="price">
+                    ₹2,499
+                    <span class="old-price">₹4,999</span>
+                    <span class="discount">50% off</span>
+                </div>
+
+                <button class="add-btn">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
 
 </body>
-  <script>
-  // Toggle dropdown on click
-  document.querySelectorAll('.dropbtn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      this.parentElement.classList.toggle('show');
-    });
-  });
-
-  // Close dropdown if clicked outside
-  window.addEventListener('click', function() {
-    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
-  });
-</script>
 </html>
-
-
-
-
-
+```
