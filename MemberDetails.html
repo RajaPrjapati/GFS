@@ -1,341 +1,1035 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Member Details</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-      padding: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>God Face Sofa Center - Inventory</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f3f4f6;
+    color:#222;
+}
+
+header{
+    background:#1f2937;
+    color:white;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+header h1{
+    font-size:24px;
+}
+
+header p{
+    font-size:13px;
+    color:#d1d5db;
+}
+
+.container{
+    max-width:1250px;
+    margin:20px auto;
+    padding:0 15px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card h3{
+    font-size:14px;
+    color:#6b7280;
+    margin-bottom:8px;
+}
+
+.card strong{
+    font-size:26px;
+}
+
+.tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+}
+
+.tab-btn{
+    border:0;
+    padding:11px 17px;
+    border-radius:7px;
+    background:#e5e7eb;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.tab-btn.active{
+    background:#2563eb;
+    color:white;
+}
+
+.section{
+    display:none;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.section.active{
+    display:block;
+}
+
+h2{
+    margin-bottom:18px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+label{
+    font-weight:bold;
+    font-size:14px;
+}
+
+input,select{
+    width:100%;
+    padding:11px;
+    border:1px solid #d1d5db;
+    border-radius:6px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#2563eb;
+}
+
+button{
+    border:0;
+    border-radius:6px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-warning{
+    background:#d97706;
+    color:white;
+}
+
+.btn-gray{
+    background:#6b7280;
+    color:white;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:700px;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #e5e7eb;
+    text-align:left;
+}
+
+th{
+    background:#f9fafb;
+}
+
+.low-stock{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.good-stock{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.search{
+    margin-bottom:15px;
+    max-width:350px;
+}
+
+.actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.message{
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:6px;
+    display:none;
+}
+
+.success-msg{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.error-msg{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.invoice-box{
+    max-width:850px;
+    margin:20px auto;
+    background:white;
+    padding:30px;
+    border:1px solid #ddd;
+}
+
+.invoice-header{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:2px solid #222;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.invoice-header h1{
+    font-size:26px;
+}
+
+.invoice-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.invoice-total{
+    margin-left:auto;
+    max-width:350px;
+    margin-top:20px;
+}
+
+.total-row{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+}
+
+.grand-total{
+    border-top:2px solid #222;
+    padding-top:10px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:800px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    h2 {
-      background: #d6336c;
-      color: white;
-      padding: 12px;
-      margin: 0;
-      text-align: center;
-      font-size: 1.4rem;
+    .form-grid{
+        grid-template-columns:1fr;
     }
 
-    h2 a {
-      color: white;
-      text-decoration: none;
+    .invoice-info{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:500px){
+    .cards{
+        grid-template-columns:1fr;
     }
 
-    .search-container {
-      padding: 10px;
-      text-align: center;
-      background: #fff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    header{
+        padding:15px;
     }
 
-    .search-container input {
-      width: 90%;
-      max-width: 400px;
-      padding: 8px 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-      box-sizing: border-box;
+    header h1{
+        font-size:20px;
     }
 
-    table {
-      font-family: Arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-      margin-top: 10px;
+    .section{
+        padding:15px;
+    }
+}
+
+@media print{
+    body *{
+        visibility:hidden;
     }
 
-    th, td {
-      border: 1px solid #ddd;
-      text-align: left;
-      padding: 8px;
-      font-size: 14px;
+    #invoicePreview,
+    #invoicePreview *{
+        visibility:visible;
     }
 
-    th {
-      background: #ffccd5;
-      color: #333;
+    #invoicePreview{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        border:0;
     }
 
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
+    .print-hide{
+        display:none!important;
     }
-
-    tr:hover {
-      background-color: #ffe5ec;
-      transition: 0.2s;
-    }
-
-    .paid {
-      color: green;
-      font-weight: bold;
-    }
-
-    .left {
-      color: ;
-      font-weight: ;
-      font-text: 10px;
-    }
-
-    /* Responsive Table */
-    .table-container {
-      overflow-x: auto;
-      margin: 10px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Fix for total row background */
-    .total-row th, 
-    .total-row td {
-      background: #ffccd5 !important;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 1.1rem;
-        padding: 10px;
-      }
-
-      th, td {
-        font-size: 12px;
-        padding: 6px;
-      }
-
-      .search-container input {
-        width: 100%;
-      }
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
 
-  <h2><a href="index.html">🧑‍🤝‍🧑🧑‍🤝‍🧑 Member Details</a></h2>
+<header>
+    <div>
+        <h1>God Face Sofa Center</h1>
+        <p>Stock Inventory & Billing System</p>
+    </div>
 
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search by name or status (Paid)">
-  </div>
+    <button class="btn-warning" onclick="showSection('settings')">
+        ⚙ Settings
+    </button>
+</header>
 
-  <div class="table-container">
-    <table id="mytable" class="tbl">
-      <tr>
-        <th>S.N</th>
-        <th>Member Name</th>
-        <th>Contact</th>
-        <th>Reference</th>
-        <th>Status</th>
-      </tr>
+<div class="container">
 
-      <tr>
-        <td>1.</td>
-        <td>Mr. Raja Prajapati</td>
-        <td>7014758446</td>
-        <td>Raja Prajapati</td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>2.</td>
-        <td>Ms. Annu Kumari</td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>3.</td>
-        <td>Ms. Kittu Kumari</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>4.</td>
-        <td>Ms. Muskan Kumari</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>5.</td>
-        <td>Mr. Aniket Kumar</td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr class="lef">
-        <td>6.</td>
-        <td>Ms. Sweta Kumari</td>
-        <td ></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>7.</td>
-        <td>Mr. Bharat Prajapati </td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>8.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>9.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>10.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>11.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>12.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>13.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>14.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>15.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>16.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>17.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="left">
-        <td>18.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>19.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>20.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>21.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>22.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>23.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>24.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="paid"></td>
-      </tr>
-      <tr>
-        <td>25.</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <!-- Total row -->
-      <tr class="total-row">
-        <th></th>
-        <th>Total</th>
-        <th></th>
-        <td></td>
-        <th></th>
-      </tr>
-    </table>
-  </div>
+    <div id="message" class="message"></div>
 
-  <script>
-    document.getElementById("searchInput").addEventListener("keyup", function() {
-      let filter = this.value.toLowerCase();
-      let rows = document.querySelectorAll("#mytable tr");
+    <!-- DASHBOARD CARDS -->
+    <div class="cards">
 
-      rows.forEach((row, index) => {
-        if (index === 0) return; // skip header
-        let text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? "" : "none";
-      });
-    });
-  </script>
+        <div class="card">
+            <h3>Total Products</h3>
+            <strong id="totalProducts">0</strong>
+        </div>
 
-</body>
-</html>
+        <div class="card">
+            <h3>Total Stock</h3>
+            <strong id="totalStock">0</strong>
+        </div>
+
+        <div class="card">
+            <h3>Total Sales</h3>
+            <strong id="totalSales">0</strong>
+        </div>
+
+        <div class="card">
+            <h3>Total Revenue</h3>
+            <strong id="totalRevenue">₹0.00</strong>
+        </div>
+
+    </div>
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button class="tab-btn active" onclick="showSection('inventory',this)">
+            📦 Inventory
+        </button>
+
+        <button class="tab-btn" onclick="showSection('addProduct',this)">
+            ➕ Add Product
+        </button>
+
+        <button class="tab-btn" onclick="showSection('sell',this)">
+            🛒 Sell Product
+        </button>
+
+        <button class="tab-btn" onclick="showSection('salesHistory',this)">
+            📜 Sales History
+        </button>
+
+        <button class="tab-btn" onclick="showSection('settings',this)">
+            ⚙ Settings
+        </button>
+
+        <button class="tab-btn" onclick="showSection('invoiceSection',this)">
+            🧾 Last Invoice
+        </button>
+
+    </div>
+
+    <!-- INVENTORY -->
+
+    <div id="inventory" class="section active">
+
+        <h2>📦 Inventory</h2>
+
+        <input
+            class="search"
+            id="productSearch"
+            placeholder="Search product..."
+            oninput="renderInventory()"
+        >
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>SKU</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="inventoryBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- ADD PRODUCT -->
+
+    <div id="addProduct" class="section">
+
+        <h2>➕ Add Product / Stock</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Product Name</label>
+                <input id="productName" placeholder="Example: Sofa Cover">
+            </div>
+
+            <div class="form-group">
+                <label>SKU / Product Code</label>
+                <input id="productSKU" placeholder="Example: SOF001">
+            </div>
+
+            <div class="form-group">
+                <label>Sale Price</label>
+                <input id="productPrice" type="number" min="0" placeholder="Example: 500">
+            </div>
+
+            <div class="form-group">
+                <label>Opening Stock</label>
+                <input id="productStock" type="number" min="0" placeholder="Example: 50">
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn-primary" onclick="addProduct()">
+            Add Product
+        </button>
+
+    </div>
+
+    <!-- SELL -->
+
+    <div id="sell" class="section">
+
+        <h2>🛒 Sell Product</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Select Product</label>
+                <select id="sellProduct" onchange="updateSellPrice()">
+                    <option value="">-- Select Product --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Available Stock</label>
+                <input id="availableStock" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Customer Name</label>
+                <input id="customerName" placeholder="Customer name">
+            </div>
+
+            <div class="form-group">
+                <label>Customer GSTIN (Optional)</label>
+                <input id="customerGSTIN" placeholder="Customer GSTIN">
+            </div>
+
+            <div class="form-group">
+                <label>Quantity</label>
+                <input
+                    id="sellQuantity"
+                    type="number"
+                    min="1"
+                    oninput="calculateSale()"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Rate</label>
+                <input id="sellPrice" type="number" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>GST Rate</label>
+
+                <select id="gstRate" onchange="calculateSale()">
+
+                    <option value="0">0%</option>
+                    <option value="5">5%</option>
+                    <option value="12">12%</option>
+                    <option value="15">15%</option>
+                    <option value="18" selected>18%</option>
+                    <option value="28">28%</option>
+                    <option value="custom">Custom</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group hidden" id="customGSTBox">
+                <label>Custom GST %</label>
+                <input
+                    id="customGST"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    oninput="calculateSale()"
+                >
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <h3>Sale Calculation</h3>
+
+            <p>Subtotal:
+                <strong id="saleSubtotal">₹0.00</strong>
+            </p>
+
+            <p>GST:
+                <strong id="saleGST">₹0.00</strong>
+            </p>
+
+            <p>
+                Grand Total:
+                <strong id="saleGrandTotal">₹0.00</strong>
+            </p>
+
+        </div>
+
+        <br>
+
+        <button class="btn-success" onclick="completeSale()">
+            ✅ Confirm Sale & Generate Bill
+        </button>
+
+    </div>
+
+    <!-- SALES HISTORY -->
+
+    <div id="salesHistory" class="section">
+
+        <h2>📜 Sales History</h2>
+
+        <input
+            class="search"
+            id="salesSearch"
+            placeholder="Search invoice/customer/product..."
+            oninput="renderSales()"
+        >
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Invoice</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="salesBody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- SETTINGS -->
+
+    <div id="settings" class="section">
+
+        <h2>⚙ Business Settings</h2>
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>Business Name</label>
+                <input id="businessName">
+            </div>
+
+            <div class="form-group">
+                <label>Business GSTIN</label>
+                <input id="businessGSTIN">
+            </div>
+
+            <div class="form-group">
+                <label>Business Address</label>
+                <input id="businessAddress">
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input id="businessPhone">
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn-primary" onclick="saveSettings()">
+            Save Settings
+        </button>
+
+    </div>
+
+    <!-- INVOICE -->
+
+    <div id="invoiceSection" class="section">
+
+        <div id="invoicePreview">
+
+            <div class="invoice-box">
+
+                <div class="invoice-header">
+
+                    <div>
+                        <h1 id="invoiceBusinessName">
+                            God Face Sofa Center
+                        </h1>
+
+                        <p id="invoiceBusinessAddress"></p>
+
+                        <p>
+                            GSTIN:
+                            <strong id="invoiceBusinessGSTIN"></strong>
+                        </p>
+
+                        <p id="invoiceBusinessPhone"></p>
+
+                    </div>
+
+                    <div>
+                        <h2>TAX INVOICE</h2>
+
+                        <p>
+                            Invoice No:
+                            <strong id="invoiceNumber"></strong>
+                        </p>
+
+                        <p>
+                            Date:
+                            <span id="invoiceDate"></span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="invoice-info">
+
+                    <div>
+                        <strong>Bill To:</strong>
+
+                        <p id="invoiceCustomer"></p>
+
+                        <p id="invoiceCustomerGST"></p>
+                    </div>
+
+                </div>
+
+                <div class="table-wrap">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Qty</th>
+                                <th>Rate</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="invoiceItems"></tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="invoice-total">
+
+                    <div class="total-row">
+                        <span>Subtotal</span>
+                        <strong id="invoiceSubtotal"></strong>
+                    </div>
+
+                    <div class="total-row">
+                        <span id="invoiceGSTLabel">GST</span>
+                        <strong id="invoiceGST"></strong>
+                    </div>
+
+                    <div class="total-row grand-total">
+                        <span>Grand Total</span>
+                        <strong id="invoiceGrandTotal"></strong>
+                    </div>
+
+                </div>
+
+                <br>
+
+                <p>
+                    <strong>Thank you for your business!</strong>
+                </p>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn-primary print-hide" onclick="window.print()">
+            🖨 Print / Save PDF
+        </button>
+
+    </div>
+
+</div>
 
 
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let products =
+    JSON.parse(localStorage.getItem("gfs_products")) || [];
+
+let sales =
+    JSON.parse(localStorage.getItem("gfs_sales")) || [];
+
+let settings =
+    JSON.parse(localStorage.getItem("gfs_settings")) || {
+
+        businessName:"God Face Sofa Center",
+
+        businessGSTIN:"08ABCDE1234F1Z5",
+
+        businessAddress:"Jaipur, Rajasthan",
+
+        businessPhone:""
+    };
+
+
+/* =========================
+   SAVE DATA
+========================= */
+
+function saveData(){
+
+    localStorage.setItem(
+        "gfs_products",
+        JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+        "gfs_sales",
+        JSON.stringify(sales)
+    );
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text,type="success"){
+
+    const box =
+        document.getElementById("message");
+
+    box.innerText=text;
+
+    box.className =
+        "message " +
+        (type==="success"
+        ?"success-msg"
+        :"error-msg");
+
+    box.style.display="block";
+
+    setTimeout(()=>{
+        box.style.display="none";
+    },3000);
+
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+function showSection(id,button){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(section=>{
+            section.classList.remove("active");
+        });
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    if(button){
+
+        document
+            .querySelectorAll(".tab-btn")
+            .forEach(btn=>{
+                btn.classList.remove("active");
+            });
+
+        button.classList.add("active");
+    }
+
+    if(id==="sell"){
+        populateProductSelect();
+    }
+
+    if(id==="settings"){
+        loadSettings();
+    }
+}
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+function addProduct(){
+
+    const name =
+        document.getElementById("productName").value.trim();
+
+    const sku =
+        document.getElementById("productSKU").value.trim();
+
+    const price =
+        Number(document.getElementById("productPrice").value);
+
+    const stock =
+        Number(document.getElementById("productStock").value);
+
+
+    if(!name || !sku){
+
+        showMessage(
+            "Product name and SKU required",
+            "error"
+        );
+
+        return;
+    }
+
+    if(price<0 || stock<0){
+
+        showMessage(
+            "Price/stock cannot be negative",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const existing =
+        products.find(
+            p => p.sku.toLowerCase()===sku.toLowerCase()
+        );
+
+
+    if(existing){
+
+        existing.stock += stock;
+
+        existing.price = price;
+
+        showMessage(
+            "Existing product stock updated"
+        );
+
+    }else{
+
+        products.push({
+
+            id:Date.now(),
+
+            name:name,
+
+            sku:sku,
+
+            price:price,
+
+            stock:stock
+
+        });
+
+        showMessage(
+            "Product added successfully"
+        );
+    }
+
+
+    saveData();
+
+    document.getElementById("productName").value="";
+    document.getElementById("productSKU").value="";
+    document.getElementById("productPrice").value="";
+    document.getElementById("productStock").value="";
+
+    renderAll();
+}
+
+
+/* =========================
+   INVENTORY
+========================= */
+
+function renderInventory(){
+
+    const tbody =
+        document.getElementById("inventoryBody");
+
+    const search =
+        document
+        .getElementById("productSearch")
+        .value
+        .toLowerCase();
+
+    tbody.innerHTML="";
+
+
+    const filtered =
+        products.filter(p=>
+            p.name.toLowerCase().includes(search) ||
+            p.sku.toLowerCase().includes(search)
+        );
+
+
+    filtered.forEach(product=>{
+
+        const tr =
+            document.createElement("tr");
+
+
+        const status =
+            product.stock<=5
+            ? `<span class="low-stock">Low Stock</span>`
+            : `<span class="good-stock">In Stock</span>`;
+
+
+        tr.innerHTML=`
+
+            <td>${escapeHTML(product.name)}</td>
+
+            <td>${escapeHTML(product.sku)}</td>
+
+            <td>₹${product.price.toFixed(2)}</td>
+
+            <td><strong>${product.stock}</strong></td>
+
+            <td>${status}</td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="btn-success"
+                        onclick="sellFromInventory(${product.id})">
+                        Sell
+                    </button>
+
+                    <button
+                        class="btn-warning"
+                        onclick="addStock(${prod
 
 
 
