@@ -155,20 +155,23 @@
       let username = document.getElementById("username").value.trim().toLowerCase();
       let password = document.getElementById("password").value.trim();
 
-      // Allowed users and passwords (lowercase keys for matching)
+      // Small letters match hone ke liye keys lowercase rakhi hain
       const users = {
-        "Laxman": "4758",
+        "laxman": "4758",
         "admin": "admin",
-        "Sitaram": "5592",
+        "sitaram": "5592",
       };
 
       if (users[username] && users[username] === password) {
-        // Welcome message with " Ji" at the end
-        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1) + " Ji✅");
+        // Unicode escape codes for emojis (Har Browser & OS par safely load honge)
+        const checkEmoji = "\u2705"; // ✅
+        alert("Login Successful! Welcome " + username.charAt(0).toUpperCase() + username.slice(1) + " Ji " + checkEmoji);
+        
         // Redirect after login
         window.location.href = "index.html";
       } else {
-        alert("Invalid Username or Password!❌");
+        const crossEmoji = "\u274C"; // ❌
+        alert("Invalid Username or Password! " + crossEmoji);
       }
     }
   </script>
